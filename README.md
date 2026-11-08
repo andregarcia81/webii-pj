@@ -1,2 +1,2 @@
 # webii-pj
-Projeto Desenvolvido no decorrer do Curso Web II - DSM Fatec
+Projeto Desenvolvido no decorrer da Disciplia WEB II  - DSM Fatec
