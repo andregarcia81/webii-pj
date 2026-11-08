@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/construtora/construtora.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO EXTERNO -->
+    <header>
+        <h2><%= nomeProjeto %></h2>
+        <h3>Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II</h3>
+    </header>
+
+    <div class="container">
+
+        <!-- CABEÇALHO INTERNO -->
+        <section class="hero">
+            <h1>🏗️ <%= title %></h1>
+            <p>Atualize os dados da obra cadastrada no sistema.</p>
+        </section>
+        <h1>🏢 Editar Obra</h1>
+        <!-- MENU DE NAVEGAÇÃO -->
+        <nav class="menu">
+            <a href="/construtora">Início</a>
+            <a href="/construtora/obras">Nova Obra</a>
+            <a href="/construtora/obras/listar">Listar Obras</a>
+            <a href="/construtora/engenheiros/listar">Engenheiros</a>
+        </nav>
+
+        <!-- FORMULÁRIO DE EDIÇÃO -->
+        <form
+            action="/construtora/obras/atualizar/<%= obra.obr_codigo %>"
+            method="POST"
+        >
+            <label for="obr_codigo">Código da Obra</label>
+            <input
+                type="text"
+                id="obr_codigo"
+                name="obr_codigo"
+                value="<%= obra.obr_codigo %>"
+                readonly
+            >
+
+            <label for="obr_cidade">Cidade</label>
+            <input
+                type="text"
+                id="obr_cidade"
+                name="obr_cidade"
+                value="<%= obra.obr_cidade %>"
+                required
+            >
+
+            <label for="obr_tipoobra">Tipo da Obra</label>
+            <select id="obr_tipoobra" name="obr_tipoobra" required>
+                <option
+                    value="Residencia"
+                    <%= obra.obr_tipoobra === 'Residencia' ? 'selected' : '' %>
+                >
+                    Residência
+                </option>
+                <option
+                    value="Apartamento"
+                    <%= obra.obr_tipoobra === 'Apartamento' ? 'selected' : '' %>
+                >
+                    Apartamento
+                </option>
+                <option
+                    value="Escola"
+                    <%= obra.obr_tipoobra === 'Escola' ? 'selected' : '' %>
+                >
+                    Escola
+                </option>
+                <option
+                    value="Barracao"
+                    <%= obra.obr_tipoobra === 'Barracao' ? 'selected' : '' %>
+                >
+                    Barracão
+                </option>
+            </select>
+
+            <label for="obr_valor">Valor da Obra</label>
+            <input
+                type="number"
+                id="obr_valor"
+                name="obr_valor"
+                step="0.01"
+                min="0"
+                value="<%= obra.obr_valor %>"
+                required
+            >
+
+            <label for="obr_dtinicio">Data de Início</label>
+            <input
+                type="date"
+                id="obr_dtinicio"
+                name="obr_dtinicio"
+                value="<%= obra.obr_dtinicio ? new Date(obra.obr_dtinicio).toISOString().split('T')[0] : '' %>"
+                required
+            >
+
+            <label for="eng_codigo">Engenheiro Responsável</label>
+            <select id="eng_codigo" name="eng_codigo" required>
+                <% engenheiros.forEach(eng => { %>
+                    <option
+                        value="<%= eng.eng_codigo %>"
+                        <%= obra.eng_codigo == eng.eng_codigo ? 'selected' : '' %>
+                    >
+                        <%= eng.eng_codigo %> - <%= eng.eng_nome %>
+                    </option>
+                <% }) %>
+            </select>
+
+            <button type="submit">Atualizar Obra</button>
+        </form>
+
+        <!-- AÇÕES -->
+        <div class="acoes">
+            <a class="btn-voltar" href="/construtora/obras/listar">Voltar para a Lista</a>
+        </div>
+
+        <!-- RODAPÉ -->
+        <footer>
+            <hr>
+            <p>Projeto Backend - NodeJs - Express - Mysql</p>
+            <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+            <p>© 2026 - 🏗️ Sistema de Gestão da Construtora</p>
+        </footer>
+
+    </div>
+</body>
+</html>

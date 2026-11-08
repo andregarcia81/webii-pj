@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/cadcli/cadclient.css" />
+</head>
+<body>
+  <header>
+    <h2><%= nomeProjeto %></h2>
+    <h3>Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II</h3>
+    <hr>
+    <h1><%= title %></h1>
+    <p>Teste os métodos do cadclientModel.js e veja o retorno logo abaixo.</p>
+  </header>
+
+  <main>
+    <ul>
+      <!-- Listar todos -->
+      <li>
+        <button onclick="executar('/cadclient','resultado-findAll')">📋 Listar todos os clientes (findAll)</button>
+        <div id="resultado-findAll" class="resultado"></div>
+      </li>
+
+      <!-- Buscar por código -->
+      <li>
+        <form onsubmit="executar('/cadclient/' + this.cli_codigo.value,'resultado-findOne'); return false;">
+          <input type="number" name="cli_codigo" placeholder="Código do cliente" required>
+          <button type="submit">🔍 Buscar por código (findOne)</button>
+        </form>
+        <div id="resultado-findOne" class="resultado"></div>
+      </li>
+
+      <!-- Criar novo -->
+      <li>
+        <form onsubmit="enviarForm(this,'/cadclient','resultado-create'); return false;">
+          <input type="text" name="cli_tipo" placeholder="Tipo (F/J)" required>
+          <input type="text" name="cli_nome" placeholder="Nome/Razão Social" required>
+          <input type="text" name="cli_apelido" placeholder="Apelido/Nome Fantasia">
+          <input type="text" name="cli_cpf" placeholder="CPF">
+          <input type="text" name="cli_rg" placeholder="RG">
+          <input type="text" name="cli_cnpj" placeholder="CNPJ">
+          <input type="text" name="cli_ie" placeholder="Inscrição Estadual">
+          <input type="email" name="cli_email" placeholder="Email" required>
+          <input type="text" name="cli_telefone" placeholder="Telefone">
+          <input type="text" name="cli_celular" placeholder="Celular">
+          <input type="text" name="cli_endereco" placeholder="Endereço" required>
+          <input type="text" name="cli_numero" placeholder="Número" required>
+          <input type="text" name="cli_complemento" placeholder="Complemento">
+          <input type="text" name="cli_bairro" placeholder="Bairro" required>
+          <input type="text" name="cli_cidade" placeholder="Cidade" required>
+          <input type="text" name="cli_estado" placeholder="Estado" required>
+          <input type="text" name="cli_cep" placeholder="CEP" required>
+          <button type="submit">➕ Criar novo cliente (create)</button>
+        </form>
+        <div id="resultado-create" class="resultado"></div>
+      </li>
+
+      <!-- Atualizar -->
+      <li>
+        <form onsubmit="enviarForm(this,'/cadclient/' + this.cli_codigo.value,'resultado-update','PUT'); return false;">
+          <input type="number" name="cli_codigo" placeholder="Código do cliente" required>
+          <input type="text" name="cli_nome" placeholder="Novo nome">
+          <input type="text" name="cli_email" placeholder="Novo email">
+          <button type="submit">✏️ Atualizar (update)</button>
+        </form>
+        <div id="resultado-update" class="resultado"></div>
+      </li>
+
+      <!-- Excluir -->
+      <li>
+        <form onsubmit="enviarForm(this,'/cadclient/' + this.cli_codigo.value,'resultado-remove','DELETE'); return false;">
+          <input type="number" name="cli_codigo" placeholder="Código do cliente" required>
+          <button type="submit">🗑️ Remover (remove)</button>
+        </form>
+        <div id="resultado-remove" class="resultado"></div>
+      </li>
+
+      <!-- Ativar/Inativar -->
+      <li>
+        <form onsubmit="enviarForm(this,'/cadclient/ai/' + this.cli_codigo.value,'resultado-ativoinativo','PATCH'); return false;">
+          <input type="number" name="cli_codigo" placeholder="Código do cliente" required>
+          <button type="submit">🔄 Ativar/Inativar</button>
+        </form>
+        <div id="resultado-ativoinativo" class="resultado"></div>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    <hr>
+    <p>Projeto Backend - NodeJs - Express - Mysql</p>
+    <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+    <p>© 2026 - <%= nomeProjeto %></p>
+  </footer>
+
+  <script src="/js/cadcli/script.js"></script>
+</body>
+</html>

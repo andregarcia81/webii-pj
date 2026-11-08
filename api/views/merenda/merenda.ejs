@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Página da Merenda</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="merenda">
+  <header>
+    <h1>🍽️ Hora da Merenda!</h1>
+    <!-- Ícone temático -->
+    <img src="/images/frutas.png" alt="Ícone de Merenda" width="120" />
+    <!-- Informações do projeto -->
+    <p id="titulo"><%= nomeProjeto %></p>
+    <hr>
+    <p id="sub-titulo">
+      Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II
+    </p>
+  </header>
+  <main>
+    <p>Essa é a página da rota <strong>/merenda</strong>.</p>
+    <a href="/">Voltar para Home</a>
+  </main>
+  <footer>
+    <p>Projeto Backend - NodeJs - Express - Mysql</p>
+    <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+    <p>&copy; <%= new Date().getFullYear() %> - Projeto <%= nomeProjeto %></p>
+  </footer> 
+</body>
+</html>

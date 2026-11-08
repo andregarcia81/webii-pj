@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/css/livros.css" />
+</head>
+
+<body>
+  <!-- Header igual ao index.ejs -->
+  <header>
+    <p id="titulo">
+      <%= nomeProjeto %>
+    </p>
+    <hr>
+    <p id="sub-titulo">
+      Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II
+    </p>
+  </header>
+
+  <main>
+    <h2>
+      <%= nomeProjeto %>
+    </h2>
+    <h2>Painel de Livros</h2>
+    <p>Teste os métodos do <strong>livrosModels.js</strong> e veja o retorno logo abaixo.</p>
+
+    <nav>
+      <ul>
+        <!-- Listar todos os livros -->
+        <li>
+          <button onclick="executar('/livros','resultado-findAll')">Listar todos os livros (findAll)</button>
+          <div id="resultado-findAll" class="resultado"></div>
+        </li>
+
+        <!-- Buscar livro por ID -->
+        <li>
+          <form onsubmit="executar('/livros/' + this.id.value,'resultado-findOne'); return false;">
+            <input type="number" name="id" placeholder="Código do livro" required>
+            <button type="submit">Buscar livro por ID (findOne)</button>
+          </form>
+          <div id="resultado-findOne" class="resultado"></div>
+        </li>
+
+        <!-- Criar novo livro -->
+        <li>
+          <form id="form-create" onsubmit="enviarForm(this,'/livros','resultado-create'); return false;">
+            <input type="text" name="liv_titulo" placeholder="Título" required>
+            <input type="text" name="liv_edicao" placeholder="Edição">
+            <input type="text" name="liv_isbn" placeholder="ISBN">
+            <input type="number" name="liv_ano" placeholder="Ano">
+            <input type="number" name="aut_codigo" placeholder="Autor (ID)" required>
+            <input type="number" name="edt_codigo" placeholder="Editora (ID)" required>
+            <button type="submit">Criar novo livro (create)</button>
+          </form>
+          <div id="resultado-create" class="resultado"></div>
+        </li>
+
+        <!-- Atualizar livro -->
+        <li>
+          <form id="form-update"
+            onsubmit="enviarForm(this,'/livros/' + this.liv_codigo.value,'resultado-update','PUT'); return false;">
+            <input type="number" name="liv_codigo" placeholder="Código do livro" required>
+            <input type="text" name="liv_titulo" placeholder="Novo título">
+            <button type="submit">Atualizar livro (update)</button>
+          </form>
+          <div id="resultado-update" class="resultado"></div>
+        </li>
+
+
+        <!-- Remover livro -->
+        <li>
+          <form id="form-remove"
+            onsubmit="enviarForm(this,'/livros/' + this.liv_codigo.value,'resultado-remove','DELETE'); return false;">
+            <input type="number" name="liv_codigo" placeholder="Código do livro" required>
+            <button type="submit">Remover livro (remove)</button>
+          </form>
+          <div id="resultado-remove" class="resultado"></div>
+        </li>
+
+        <!-- Ativar/Inativar livro -->
+        <li>
+          <form id="form-ativoinativo"
+            onsubmit="enviarForm(this,'/livros/ai/' + this.liv_codigo.value,'resultado-ativoinativo','PATCH'); return false;">
+            <input type="number" name="liv_codigo" placeholder="Código do livro" required>
+            <button type="submit">Ativar/Inativar livro (ativoinativo)</button>
+          </form>
+          <div id="resultado-ativoinativo" class="resultado"></div>
+        </li>
+      </ul>
+    </nav>
+  </main>
+
+  <!-- Footer igual ao index.ejs -->
+  <footer>
+    <p>Projeto Backend - NodeJs - Express - Mysql</p>
+    <p>Desenvolvido por: <strong>
+        <%= nomeAutor %>
+      </strong></p>
+    <p>&copy; <%= new Date().getFullYear() %> - Projeto <%= nomeProjeto %>
+    </p>
+  </footer>
+
+  <script>
+    async function executar(url, alvo) {
+      try {
+        const resposta = await fetch(url);
+        const dados = await resposta.json();
+        document.getElementById(alvo).innerText = JSON.stringify(dados, null, 2);
+      } catch (err) {
+        document.getElementById(alvo).innerText = "Erro: " + err;
+      }
+    }
+
+    async function enviarForm(form, url, alvo, metodo = 'POST') {
+      try {
+        const dadosForm = new FormData(form);
+        const obj = {};
+        dadosForm.forEach((value, key) => obj[key] = value);
+
+        const resposta = await fetch(url, {
+          method: metodo,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(obj)
+        });
+
+        const dados = await resposta.json();
+        document.getElementById(alvo).innerText = JSON.stringify(dados, null, 2);
+      } catch (err) {
+        document.getElementById(alvo).innerText = "Erro: " + err;
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+#titulo {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+#sub-titulo {
+  font-size: 1.2em;
+  margin-top: 5px;
+  color: #ccc;
+}
+
+/* Menu */
+nav ul.menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+nav ul.menu li {
+  margin: 0 15px;
+}
+
+nav ul.menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav ul.menu li a:hover {
+  color: #ffcc00;
+}
+
+/* Corpo principal */
+#corpo {
+  padding: 20px;
+  max-width: 900px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#corpo h2, #corpo h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Imagens gerais */
+#corpo img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+#corpo.sobre img {
+  max-width: 250px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+}
+
+/* Ajuste específico para a página de missão */
+#corpo.missao img {
+  max-width: 250px;   /* limita a largura da imagem */
+  height: auto;       /* mantém proporção */
+  display: block;
+  margin: 20px auto;  /* centraliza */
+  border-radius: 8px; /* bordas arredondadas */
+}
+
+/* Ajuste específico para a página de visão */
+#corpo.visao img {
+  max-width: 250px;   /* limita a largura da imagem */
+  height: auto;       /* mantém proporção */
+  display: block;
+  margin: 20px auto;  /* centraliza */
+  border-radius: 8px; /* bordas arredondadas */
+}
+
+/* Ajuste específico para a página de valores */
+#corpo.valores img {
+  max-width: 250px;   /* limita a largura da imagem */
+  height: auto;       /* mantém proporção */
+  display: block;
+  margin: 20px auto;  /* centraliza */
+  border-radius: 8px; /* bordas arredondadas */
+}
+
+/* Ajuste específico para a página de equipe */
+#corpo.equipe img {
+  max-width: 300px;   /* limita largura */
+  height: auto;       /* mantém proporção */
+  display: block;
+  margin: 20px auto;  /* centraliza */
+  border-radius: 8px;
+}
+
+/* Ajuste específico para a página de contato */
+#corpo.contato img {
+  max-width: 250px;   /* limita a largura da imagem */
+  height: auto;       /* mantém proporção */
+  display: block;
+  margin: 20px auto;  /* centraliza */
+  border-radius: 8px; /* bordas arredondadas */
+}
+
+/* Figcaption */
+figcaption {
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* Rodapé */
+footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+}

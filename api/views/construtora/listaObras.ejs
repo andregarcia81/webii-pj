@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/construtora/construtora.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO EXTERNO -->
+    <header>
+        <h2><%= nomeProjeto %></h2>
+        <h3>Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II</h3>
+    </header>
+
+    <div class="container">
+
+        <!-- CABEÇALHO INTERNO -->
+        <section class="hero">
+            <h1>🏗️ <%= title %></h1>
+            <p>Confira todas as obras cadastradas e os respectivos engenheiros responsáveis.</p>
+        </section>
+        <h1>🏢 Lista de Obras</h1>
+
+        <!-- MENU DE NAVEGAÇÃO -->
+        <nav class="menu">
+            <a href="/construtora">Início</a>
+            <a href="/construtora/obras">Nova Obra</a>
+            <a href="/construtora/engenheiros">Novo Engenheiro</a>
+            <a href="/construtora/engenheiros/listar">Listar Engenheiros</a>
+        </nav>
+
+        <!-- LISTAGEM / TABELA -->
+        <% if (obras && obras.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Cidade</th>
+                        <th>Tipo de Obra</th>
+                        <th>Valor</th>
+                        <th>Data Início</th>
+                        <th>Engenheiro</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% obras.forEach(obra => { %>
+                        <tr>
+                            <td><%= obra.obr_codigo %></td>
+                            <td><%= obra.obr_cidade %></td>
+                            <td><%= obra.obr_tipoobra %></td>
+                            <td>
+                                R$ <%= Number(obra.obr_valor).toLocaleString('pt-BR', {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                }) %>
+                            </td>
+                            <td>
+                                <%= obra.obr_dtinicio
+                                    ? new Date(obra.obr_dtinicio).toLocaleDateString('pt-BR')
+                                    : ''
+                                %>
+                            </td>
+                            <td><%= obra.eng_nome %></td>
+                            <td>
+                                <a
+                                    class="btn-editar"
+                                    href="/construtora/obras/editar/<%= obra.obr_codigo %>"
+                                >
+                                    Editar
+                                </a>
+                                <a
+                                    class="btn-excluir"
+                                    href="/construtora/obras/excluir/<%= obra.obr_codigo %>"
+                                    onclick="return confirm('Deseja realmente excluir esta obra?')"
+                                >
+                                    Excluir
+                                </a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <div class="mensagem">
+                <p>Nenhuma obra cadastrada.</p>
+                <p>Cadastre uma nova obra para visualizar os registros.</p>
+            </div>
+        <% } %>
+
+        <!-- AÇÕES -->
+        <div class="acoes">
+            <a class="btn-voltar" href="/construtora">Voltar ao Menu</a>
+        </div>
+
+        <!-- RODAPÉ -->
+        <footer>
+            <hr>
+            <p>Projeto Backend - NodeJs - Express - Mysql</p>
+            <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+            <p>© 2026 - 🏗️ Sistema de Gestão da Construtora</p>
+        </footer>
+
+    </div>
+</body>
+</html>

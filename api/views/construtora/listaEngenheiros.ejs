@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/construtora/construtora.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO EXTERNO -->
+    <header>
+        <h2><%= nomeProjeto %></h2>
+        <h3>Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II</h3>
+    </header>
+
+    <div class="container">
+
+        <!-- CABEÇALHO INTERNO -->
+        <section class="hero">
+            <h1>🏗️ <%= title %></h1>
+            <p>Confira todos os engenheiros cadastrados no sistema.</p>
+        </section>
+        <h1>👷 Lista de Engenheiros</h1>
+        <!-- MENU DE NAVEGAÇÃO -->
+        <nav class="menu">
+            <a href="/construtora">Início</a>
+            <a href="/construtora/engenheiros">Novo Engenheiro</a>
+            <a href="/construtora/obras">Nova Obra</a>
+            <a href="/construtora/obras/listar">Listar Obras</a>
+        </nav>
+
+        <!-- LISTAGEM / TABELA -->
+        <% if (engenheiros.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Apelido</th>
+                        <th>Telefone</th>
+                        <th>CREA</th>
+                        <th>Data CREA</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% engenheiros.forEach(eng => { %>
+                        <tr>
+                            <td><%= eng.eng_codigo %></td>
+                            <td><%= eng.eng_nome %></td>
+                            <td><%= eng.eng_apelido %></td>
+                            <td><%= eng.eng_telefone %></td>
+                            <td><%= eng.eng_crea %></td>
+                            <td>
+                                <%= eng.eng_datacrea ? new Date(eng.eng_datacrea).toLocaleDateString('pt-BR') : '' %>
+                            </td>
+                            <td>
+                                <a
+                                    class="btn-editar"
+                                    href="/construtora/engenheiros/editar/<%= eng.eng_codigo %>"
+                                >
+                                    Editar
+                                </a>
+                                <a
+                                    class="btn-excluir"
+                                    href="/construtora/engenheiros/excluir/<%= eng.eng_codigo %>"
+                                    onclick="return confirm('Deseja realmente excluir este engenheiro?')"
+                                >
+                                    Excluir
+                                </a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <div class="mensagem">
+                <p>Nenhum engenheiro cadastrado.</p>
+            </div>
+        <% } %>
+
+        <!-- AÇÕES -->
+        <div class="acoes">
+            <a class="btn-voltar" href="/construtora">Voltar ao Menu</a>
+        </div>
+
+        <!-- RODAPÉ -->
+        <footer>
+            <hr>
+            <p>Projeto Backend - NodeJs - Express - Mysql</p>
+            <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+            <p>© 2026 - 🏗️ Sistema de Gestão da Construtora</p>
+        </footer>
+
+    </div>
+</body>
+</html>

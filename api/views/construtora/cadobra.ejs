@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/construtora/construtora.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO EXTERNO -->
+    <header>
+        <h2><%= nomeProjeto %></h2>
+        <h3>Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II</h3>
+    </header>
+
+    <div class="container">
+
+        <!-- CABEÇALHO INTERNO -->
+        <section class="hero">
+            <h1>🏗️ <%= title %></h1>
+            <p>Preencha os dados para cadastrar uma nova obra no sistema.</p>
+        </section>
+        <h1>🏢Cadastro de Obras</h1>
+        <!-- MENU DE NAVEGAÇÃO -->
+        <nav class="menu">
+            <a href="/construtora">Início</a>
+            <a href="/construtora/obras/listar">Listar Obras</a>
+            <a href="/construtora/engenheiros/listar">Engenheiros</a>
+        </nav>
+
+        <!-- FORMULÁRIO DE CADASTRO -->
+        <form action="/construtora/obras/salvar" method="POST">
+            <label for="obr_cidade">Cidade</label>
+            <input
+                type="text"
+                id="obr_cidade"
+                name="obr_cidade"
+                placeholder="Digite a cidade"
+                required
+            >
+
+            <label for="obr_tipoobra">Tipo da Obra</label>
+            <select id="obr_tipoobra" name="obr_tipoobra" required>
+                <option value="">Selecione</option>
+                <option value="Residencia">Residência</option>
+                <option value="Apartamento">Apartamento</option>
+                <option value="Escola">Escola</option>
+                <option value="Barracao">Barracão</option>
+            </select>
+
+            <label for="obr_valor">Valor da Obra</label>
+            <input
+                type="number"
+                id="obr_valor"
+                name="obr_valor"
+                step="0.01"
+                min="0"
+                placeholder="0,00"
+                required
+            >
+
+            <label for="obr_dtinicio">Data de Início</label>
+            <input
+                type="date"
+                id="obr_dtinicio"
+                name="obr_dtinicio"
+                required
+            >
+
+            <label for="eng_codigo">Engenheiro Responsável</label>
+            <select id="eng_codigo" name="eng_codigo" required>
+                <option value="">Selecione um engenheiro</option>
+                <% engenheiros.forEach(eng => { %>
+                    <option value="<%= eng.eng_codigo %>">
+                        <%= eng.eng_codigo %> - <%= eng.eng_nome %>
+                    </option>
+                <% }) %>
+            </select>
+
+            <button type="submit">Salvar Obra</button>
+        </form>
+
+        <!-- AÇÕES -->
+        <div class="acoes">
+            <a class="btn-voltar" href="/construtora">Voltar ao Menu</a>
+        </div>
+
+        <!-- RODAPÉ -->
+        <footer>
+            <hr>
+            <p>Projeto Backend - NodeJs - Express - Mysql</p>
+            <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+            <p>© 2026 - 🏗️ Sistema de Gestão da Construtora</p>
+        </footer>
+
+    </div>
+</body>
+</html>

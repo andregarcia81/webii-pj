@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/construtora/construtora.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO EXTERNO — igual em todas as páginas -->
+    <header>
+        <h2><%= nomeProjeto %></h2>
+        <h3>Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II</h3>
+    </header>
+    <main class="container">
+        <!-- CABEÇALHO INTERNO (.hero) -->
+        <section class="hero">
+            <h1>🏗️<%= title %></h1>
+            <p>Preencha os dados para cadastrar um novo engenheiro no sistema.</p>
+        </section>
+        
+        <h1>👷Cadastro de Engenheiros</h1>
+
+        <nav class="menu">
+            <a href="/construtora">Início</a>
+            <a href="/construtora/engenheiros/listar">Listar Engenheiros</a>
+            <a href="/construtora/obras">Nova Obra</a>
+            <a href="/construtora/obras/listar">Listar Obras</a>
+        </nav>
+
+        <form action="/construtora/engenheiros/salvar" method="POST">
+            <label for="eng_nome">Nome Completo</label>
+            <input
+                type="text"
+                id="eng_nome"
+                name="eng_nome"
+                placeholder="Digite o nome do engenheiro"
+                required
+            >
+
+            <label for="eng_apelido">Apelido</label>
+            <input
+                type="text"
+                id="eng_apelido"
+                name="eng_apelido"
+                placeholder="Digite o apelido"
+            >
+
+            <label for="eng_telefone">Telefone</label>
+            <input
+                type="text"
+                id="eng_telefone"
+                name="eng_telefone"
+                placeholder="(16) 99999-9999"
+            >
+
+            <label for="eng_crea">CREA</label>
+            <input
+                type="text"
+                id="eng_crea"
+                name="eng_crea"
+                placeholder="Número do CREA"
+                required
+            >
+
+            <label for="eng_datacrea">Data de Emissão do CREA</label>
+            <input
+                type="date"
+                id="eng_datacrea"
+                name="eng_datacrea"
+                required
+            >
+
+            <button type="submit">Salvar Engenheiro</button>
+        </form>
+
+        <div class="acoes" style="margin-top: 20px;">
+            <a class="btn-voltar" href="/construtora">Voltar ao Menu</a>
+        <!-- RODAPÉ — igual em todas as páginas -->
+        <footer>
+            <hr>
+            <p>Projeto Backend - NodeJs - Express - Mysql</p>
+            <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+            <p>© 2026 - 🏗️ Sistema de Gestão da Construtora</p>
+        </footer>
+
+    </div>
+</body>
+</html>

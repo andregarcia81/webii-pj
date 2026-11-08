@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" type="text/css" href="/css/empresa.css">
+</head>
+<body>
+  <header>
+    <p id="titulo"><%= nomeProjeto %></p>
+    <hr>
+    <p id="sub-titulo">Cabeamento Estruturado - Eletrica - IOT - <br> Transformando Conectividade em Inteligência</p>
+      <nav>
+  <ul class="menu">
+    <li><a href="/empresa/">🏠 Home</a></li>
+    <li><a href="/empresa/sobre">📖 Sobre</a></li>
+    <li><a href="/empresa/missao">🚀 Missão</a></li>
+    <li><a href="/empresa/visao">🌍 Visão</a></li>
+    <li><a href="/empresa/valores">💡 Valores</a></li>
+    <li><a href="/empresa/equipe">👥 Equipe</a></li>
+    <li><a href="/empresa/contato">✉️ Contato</a></li>
+  </ul>
+</nav>
+
+  </header>
+
+  <section id="corpo" class="equipe">
+    <h3>Equipe</h3>
+        <figure>
+      <img src="/images/equipe.png" alt="Equipe Infraestrutura inteligente">
+      <figcaption>Equipe Infraestrutura inteligente para um mundo conectado</figcaption>
+    </figure>
+
+    <p>Somos uma empresa dedicada a oferecer soluções em cabeamento estruturado e integração tecnológica, com foco em qualidade, inovação e sustentabilidade.</p>
+    <p>Nosso objetivo é simplificar a complexidade digital e energética do mundo moderno, criando infraestruturas seguras e inteligentes que impulsionam negócios e melhoram ambientes.</p>
+
+    <p>Conheça os profissionais que fazem parte da nossa empresa:</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="/images/membro1.jpg" alt="Foto do membro 1">
+      <h4>Gustavo</h4>
+      <p>Projetos Eletricos</p>
+      <p>Especialista Responsável pela coordenação de todas as etapas envolvidas na area eletrica.</p>
+    </div>
+    <div class="team-card">
+      <img src="/images/membro2.jpg" alt="Foto do membro 2">
+      <h4>André Garcia </h4>
+      <p>Projetos de Redes - Cabeamento Estruturado</p>
+      <p>Especialista em redes de comunicação e cabeamento estruturado.</p>
+    </div>
+    <div class="team-card">
+      <img src="/images/membro3.jpg" alt="Foto do membro 3">
+      <h4>André e Gustavo</h4>
+      <p>Projetos de IOT</p>
+      <p>Equipe multidisciplinar especializada em soluções de Internet das Coisas.</p>
+    </div>
+  </div>
+  
+  </section>
+
+  <footer>
+    <p>Projeto Backend - NodeJs - Express - Mysql</p>
+    <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+  </footer>
+</body>
+</html>

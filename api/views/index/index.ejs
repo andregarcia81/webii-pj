@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <!-- Informações do projeto -->
+    <p id="titulo"><%= nomeProjeto %></p>
+    <hr>
+    <p id="sub-titulo">
+      Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II
+    </p>
+  </header>
+
+  <main>
+    <h2>Bem-vindo ao projeto
+	<br> <%= nomeProjeto %>!</h2>
+    <p>Este é um exemplo de página renderizada com <strong>EJS</strong>.</p>
+
+    <nav>
+      <ul>
+        <li><a href="/praia">Ir para Praia</a></li>
+        <li><a href="/merenda">Ir para Merenda</a></li>
+        <li><a href="/merenda/hamburguer">Ir para Hamburguer</a></li>
+        <li><a href="/merenda/pizza">Ir para Pizza</a></li>
+        <li><a href="/merenda/suco">Ir para Suco</a></li>
+        <br><br>
+        <li><a href="/empresa/">Ir para Empresa</a></li>
+        <br><br>
+        <li><a href="/livros/">Ir para Livros JS</a></li>
+        <li><a href="/livros/livros.ejs">Ir para Painel Livros</a></li>
+        <br><br>
+        <li><a href="/cep/">Ir para CEP</a></li>
+        <br><br>
+        <li><a href="/cadclient/">Ir para CadCliente JS</a></li>
+        <li><a href="/cadclient/cadclient.ejs">Ir para Painel CadCliente</a></li>
+        <br><br>
+        <li><a href="/construtora/">Ir para Construtora JS</a></li>
+
+      </ul>
+    </nav>
+  </main>
+  <footer>
+    <p>Projeto Backend - NodeJs - Express - Mysql</p>
+    <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+    <p>&copy; <%= new Date().getFullYear() %> - Projeto <%= nomeProjeto %></p>
+  </footer>
+</body>
+</html>

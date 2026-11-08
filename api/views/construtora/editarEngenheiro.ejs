@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/construtora/construtora.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO EXTERNO -->
+    <header>
+        <h2><%= nomeProjeto %></h2>
+        <h3>Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II</h3>
+    </header>
+
+    <div class="container">
+
+        <!-- CABEÇALHO INTERNO -->
+        <section class="hero">
+            <h1>🏗️ <%= title %></h1>
+            <p>Atualize os dados do engenheiro no sistema.</p>
+        </section>
+        <h1>👷 Editar Engenheiro</h1>
+
+        <!-- MENU DE NAVEGAÇÃO -->
+        <nav class="menu">
+            <a href="/construtora">Início</a>
+            <a href="/construtora/engenheiros">Novo Engenheiro</a>
+            <a href="/construtora/engenheiros/listar">Listar Engenheiros</a>
+            <a href="/construtora/obras/listar">Listar Obras</a>
+        </nav>
+
+        <!-- FORMULÁRIO DE EDIÇÃO -->
+        <form 
+            action="/construtora/engenheiros/atualizar/<%= engenheiro.eng_codigo %>" 
+            method="POST"
+        >
+            <label for="eng_codigo">Código</label>
+            <input
+                type="text"
+                id="eng_codigo"
+                name="eng_codigo"
+                value="<%= engenheiro.eng_codigo %>"
+                readonly
+            >
+
+            <label for="eng_nome">Nome</label>
+            <input
+                type="text"
+                id="eng_nome"
+                name="eng_nome"
+                value="<%= engenheiro.eng_nome %>"
+                required
+            >
+
+            <label for="eng_apelido">Apelido</label>
+            <input
+                type="text"
+                id="eng_apelido"
+                name="eng_apelido"
+                value="<%= engenheiro.eng_apelido %>"
+            >
+
+            <label for="eng_telefone">Telefone</label>
+            <input
+                type="text"
+                id="eng_telefone"
+                name="eng_telefone"
+                value="<%= engenheiro.eng_telefone %>"
+            >
+
+            <label for="eng_crea">CREA</label>
+            <input
+                type="text"
+                id="eng_crea"
+                name="eng_crea"
+                value="<%= engenheiro.eng_crea %>"
+            >
+
+            <label for="eng_datacrea">Data do CREA</label>
+            <input
+                type="date"
+                id="eng_datacrea"
+                name="eng_datacrea"
+                value="<%= engenheiro.eng_datacrea ? engenheiro.eng_datacrea.toISOString().split('T')[0] : '' %>"
+            >
+
+            <button type="submit">Atualizar Engenheiro</button>
+        </form>
+
+        <!-- AÇÕES -->
+        <div class="acoes">
+            <a class="btn-voltar" href="/construtora/engenheiros/listar">Voltar para a Lista</a>
+        </div>
+
+        <!-- RODAPÉ -->
+        <footer>
+            <hr>
+            <p>Projeto Backend - NodeJs - Express - Mysql</p>
+            <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+            <p>© 2026 - 🏗️ Sistema de Gestão da Construtora</p>
+        </footer>
+
+    </div>
+</body>
+</html>

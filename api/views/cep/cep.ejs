@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <!-- CSS global -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <!-- CSS específico da página CEP -->
+  <link rel="stylesheet" href="/css/cep.css" />
+</head>
+<body>
+  <header>
+    <p id="titulo"><%= nomeProjeto %></p>
+    <hr>
+    <p id="sub-titulo">
+      Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II
+    </p>
+    <a href="/" class="btn btn-secondary">← Voltar</a>
+  </header>
+
+  <main>
+    <h2>Consulta de CEP</h2>
+    <p>Digite o CEP abaixo para consultar:</p>
+
+    <section class="cep-search">
+      <label for="cepInput">CEP:</label>
+      <div class="cep-input-group">
+        <input type="text" id="cepInput" maxlength="9"
+               placeholder="00000-000"
+               oninput="this.value = this.value.replace(/\D/g,'').replace(/^(\d{5})(\d)/,'$1-$2')" />
+        <button onclick="buscarCEP()" class="btn btn-primary">Buscar</button>
+      </div>
+    </section>
+
+    <div id="resultadoCEP" class="address-result" style="display:none">
+      <h3>Endereço Encontrado</h3>
+      <div class="address-grid">
+        <div class="address-item">
+          <span class="label">Logradouro</span>
+          <span class="value" id="logradouro">—</span>
+        </div>
+        <div class="address-item">
+          <span class="label">Bairro</span>
+          <span class="value" id="bairro">—</span>
+        </div>
+        <div class="address-item">
+          <span class="label">Cidade</span>
+          <span class="value" id="cidade">—</span>
+        </div>
+        <div class="address-item">
+          <span class="label">Estado</span>
+          <span class="value" id="estado">—</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="erroCEP" class="error-message" style="display:none"></div>
+  </main>
+
+  <footer>
+    <p>Projeto Backend - NodeJs - Express - Mysql</p>
+    <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+    <p>&copy; <%= new Date().getFullYear() %> - Projeto <%= nomeProjeto %></p>
+  </footer>
+
+  <script>
+    function buscarCEP() {
+      const cep = document.getElementById('cepInput').value.replace(/\D/g, '');
+      if (cep.length !== 8) {
+        exibirErroCEP('CEP inválido. Digite 8 dígitos.');
+        return;
+      }
+      document.getElementById('resultadoCEP').style.display = 'none';
+      document.getElementById('erroCEP').style.display = 'none';
+
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(res => { if (!res.ok) throw new Error(); return res.json(); })
+        .then(data => {
+          if (data.erro) {
+            exibirErroCEP('CEP não encontrado na base dos Correios.');
+            return;
+          }
+          document.getElementById('logradouro').textContent = data.logradouro || '—';
+          document.getElementById('bairro').textContent     = data.bairro     || '—';
+          document.getElementById('cidade').textContent     = data.localidade || '—';
+          document.getElementById('estado').textContent     = data.uf         || '—';
+          document.getElementById('resultadoCEP').style.display = 'block';
+        })
+        .catch(() => exibirErroCEP('Erro ao consultar ViaCEP. Tente novamente.'));
+    }
+
+    function exibirErroCEP(msg) {
+      const el = document.getElementById('erroCEP');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('cepInput')
+        .addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') buscarCEP();
+        });
+    });
+  </script>
+</body>
+</html>

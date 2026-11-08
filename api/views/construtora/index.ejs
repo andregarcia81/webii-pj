@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construtora - Dashboard</title>
+    <link rel="stylesheet" href="/css/construtora/construtora.css">
+</head>
+<body>
+    <header>
+        <h2><%= nomeProjeto %></h2>
+        <h3>Curso Desenvolvimento de Software Multi-Plataforma - Disciplina Programação Web-II</h3>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>🏗️ Sistema de Gestão da Construtora</h1>
+            <p>Gerencie engenheiros, obras e acompanhe os projetos da empresa.</p>
+        </section>
+
+        <main>
+            <section class="dashboard">
+                <div class="card">
+                    <div class="icone">👷</div>
+                    <h2>Engenheiros</h2>
+                    <p>Cadastre novos engenheiros e mantenha os dados atualizados.</p>
+                    <div class="acoes-card">
+                        <a href="/construtora/engenheiros" class="btn-card btn-primary">Novo Cadastro</a>
+                        <a href="/construtora/engenheiros/listar" class="btn-card btn-secondary">Visualizar</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="icone">🏢</div>
+                    <h2>Obras</h2>
+                    <p>Cadastre e acompanhe todas as obras da construtora.</p>
+                    <div class="acoes-card">
+                        <a href="/construtora/obras" class="btn-card btn-primary">Nova Obra</a>
+                        <a href="/construtora/obras/listar" class="btn-card btn-secondary">Visualizar</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info">
+                <div class="info-box">
+                    <h3>✅ CRUD Completo</h3>
+                    <p>Cadastro, consulta, edição e exclusão de registros.</p>
+                </div>
+                <div class="info-box">
+                    <h3>🗄️ Banco de Dados</h3>
+                    <p>Integração com MySQL utilizando Node.js e Express.</p>
+                </div>
+                <div class="info-box">
+                    <h3>🔗 Relacionamentos</h3>
+                    <p>Controle entre Engenheiros e Obras através de chave estrangeira.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <hr>
+            <p>Projeto Backend - NodeJs - Express - Mysql</p>
+            <p>Desenvolvido por: <strong><%= nomeAutor %></strong></p>
+            <p>© 2026 - 🏗️ Sistema de Gestão da Construtora</p>
+        </footer>
+    </div>
+</body>
+</html>
